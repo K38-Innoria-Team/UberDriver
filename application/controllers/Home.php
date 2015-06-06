@@ -152,8 +152,6 @@ class Home extends CI_Controller {
             unset($_SESSION['register']);
             unset($_SESSION['completed']);
         }
-
-
     }
 
     public function register1()
