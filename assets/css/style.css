@@ -1,0 +1,95 @@
+.Page{
+	width: 100%;
+	height: 100%;
+	background-color: black;
+}
+#titlePage{
+	color: white;
+	font-size: 25px;
+}
+.Header{
+	background-color: black;
+	width: 100%;
+	height: 6%;
+}
+.Content{
+	background: url('../img/bg.jpg') no-repeat;
+	width: 100%;
+	height: 460px;
+
+}
+.Footer{
+	background-color: black;
+	width: 100%;
+	height: 20%;
+	color: white;
+}
+/*.ChooseRegion{*/
+	/*padding-top: 200px;*/
+	/*padding-left: 200px;*/
+	/*padding-bottom: 200px;*/
+	/*height: 460px;*/
+/*}*/
+.ChooseRegion2{
+	text-align: center;
+}
+.Services{
+	padding-top: 100px;
+	padding-left: 400px;
+	width: 100%;
+	height: 460px;
+}
+.Information{
+	padding-top: 10px;
+	padding-left: 200px;
+	color: white;
+    width: 800px;
+    float: left;
+}
+.Error{
+    position: absolute;
+    top: 200px;
+    left: 600px;
+    background: red;
+    opacity: 0.3;
+    border: 1px solid red;
+    border-radius:5px;
+    padding: 5px;
+    box-shadow: 5px 5px 5px black;
+
+}
+.Welcome{
+	height: 460px;
+}
+#titleWelcome{
+	padding-top: 150px;
+	font-size: 50px;
+}
+.textFooter{
+	text-align: center;
+}
+#serviceItems1{
+	width: 200px;
+	height: auto;
+	background-color: white;
+	border-radius: 5px;
+	margin: 10px;
+}
+.service-left{
+	float: left;
+}
+.service-right{
+
+}
+.dropdownRegion{
+	background-color: white;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.dropdownRegion li:hover{
+	background-color: #000000;
+	color: white;
+	list-style-type: none;
+	cursor: pointer;
+}
