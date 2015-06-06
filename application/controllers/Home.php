@@ -23,7 +23,8 @@ class Home extends CI_Controller {
         $data = array(
             'title' => 'my page',
             'district' => $district,
-            'service' => $service
+            'service' => $service,
+
         );
 
         $this->load->view('home/step1', $data);
@@ -40,7 +41,8 @@ class Home extends CI_Controller {
             'title' => 'my page',
             'service' => $service,
             'dis_id' => $dis_id,
-            'pro_id' => $pro_id
+            'pro_id' => $pro_id,
+            'completed'=>false
         );
             if (isset($_SESSION['register'])) {
                 //var_dump($this->session->userdata('register'));
@@ -72,7 +74,7 @@ class Home extends CI_Controller {
             )
             );
         $this->form_validation->set_rules('txtBirthday', 'Birthday', 'required');
-        $this->form_validation->set_rules('txtPassword', 'Password', 'required|min_length[5]|max_length[20]',
+        $this->form_validation->set_rules('txtPassword', 'Password', 'required|min_length[5]|max_length[20]|trim',
             array(
                 'min_length'=>'Password have length from 5 to 20 characters',
                 'max_length'=> 'Password have length from 5 to 20 characters',
@@ -100,6 +102,10 @@ class Home extends CI_Controller {
                 else {
                     header("location:" . base_url() . "index.php/Home/step4");
                 }
+                $flat=array(
+                    'completed'=>true
+                );
+                $this->session->set_userdata('completed',$flat);
             }else {
                 if (!isset($_POST['dis_id']) || !isset($_POST['ser_id']) || !isset($_POST['txtFirstName']) || !isset($_POST['txtLastName'])
                     || !isset($_POST['txtPhone']) || !isset($_POST['txtEmail']) || !isset($_POST['txtBirthday']) || !isset($_POST['txtPassword']))
@@ -135,14 +141,16 @@ class Home extends CI_Controller {
     }
 
     public function step4(){
-        if(isset($_SESSION['register'])) {
-            echo "<script>alert('You are sure correctly all of them!');</script>";
-            $this->load->view('home/welcome');
+        if(isset($_SESSION['register']) && isset($_SESSION['completed'])) {
+                echo "<script>alert('You are sure correctly all of them!');</script>";
+                $this->load->view('home/welcome');
         }
-        else
-            header("location:".base_url()."index.php/Home/step1");
-        if(isset($_SESSION['register'])) {
+        else {
+            header("location:" . base_url() . "index.php/Home/step1");
+        }
+        if(isset($_SESSION['register']) && isset($_SESSION['completed'])) {
             unset($_SESSION['register']);
+            unset($_SESSION['completed']);
         }
 
 
