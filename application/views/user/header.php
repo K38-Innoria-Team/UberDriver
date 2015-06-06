@@ -1,3 +1,5 @@
 <div class="Header">
-	<center><h2>Login User</h2></center>
+	<?php
+		require_once('titlePage.php');
+	?>				
 </div>

@@ -13,7 +13,7 @@ class District_model extends CI_Model {
 
 	public function selectDistrict() {
         try{
-            $query = $this->db->query("SELECT d.id as dis_id, p.id as pro_id, CONCAT( d.name,', ', p.name,', ', 							c.name ) AS NAME
+            $query = $this->db->query("SELECT d.id as dis_id, p.id as pro_id, CONCAT( d.name,', ', p.name,', ', c.name ) AS NAME
 								FROM district d, province p, country c
 								WHERE d.id_province = p.id and p.id_country=c.id");
             return $query->result();

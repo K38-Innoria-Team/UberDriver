@@ -20,21 +20,25 @@ class Driver extends CI_Controller {
             //echo "<pre>";
             //$test=$this->session->userdata('login');
             //var_dump($test);
-            $val = $this->input->post('txtRegion');
-            if($val != ''){
-                $driver = $this->driver_model->selectDriver($val);
-                $data = array(
-                    'title' => 'my page',
-                    'driver' => $driver
-                );
-            }
-            else{
-                $driver = $this->driver_model->selectDriver('#####');
-                $data = array(
-                    'title' => 'my page',
-                    'driver' => $driver
-                );
-            }
+            $this->load->model('district_model');
+            $values = $this->district_model->selectDistrict();
+            //var_dump($district);
+            if(isset($_POST['district'])) {
+                    $driver = $this->driver_model->selectDriver($_POST['district']);
+                    $data = array(
+                        'title' => 'my page',
+                        'driver' => $driver,
+                        'district'=>$values,
+                    );
+                } else {
+                    $driver = $this->driver_model->selectDriver('#####');
+                    $data = array(
+                        'title' => 'my page',
+                        'driver' => $driver,
+                        'district'=>$values,
+                    );
+                }
+           // }
             $this->load->view('user/report', $data);
         }
         else{
