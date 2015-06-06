@@ -62,6 +62,19 @@ class Users extends CI_Controller {
             //$test=$this->session->userdata('login');
             //var_dump($test);
             $this->load->view('user/report');
+            if(isset($_POST['district'])) {
+                $dis_id = $this->input->post('district');
+                $drivers=$this->driver_model->selectDriver($dis_id);
+
+                $data = array(
+                    'title' => 'my page',
+                    'drivers' => $drivers,
+                );
+                    $this->load->view('user/report_table', $data);
+            }
+            else{
+                header("location:".base_url()."index.php/Users/report");
+            }
         }
         else{
             $data=array(

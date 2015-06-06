@@ -5,6 +5,7 @@
     var id_pro = [];
     var id_dis = [];
 </script>
+
 <?php
     
     $arr = $district;
@@ -25,7 +26,7 @@
         <div class="item active">
             <div class="ChooseRegion2">
                 <div>
-                    <form style="padding-left: 200px;" class="form-inline" name="frmRegion" action="<?php echo base_url(); ?>index.php/Home/step2" method="POST" action="" id="frmRegion">
+                    <form style="padding-left: 200px;" class="form-inline" name="frmRegion" action="<?php echo base_url(); ?>index.php/Home/step2" method="POST"  id="frmRegion">
                         <div>
                             <p style="color: white; font-weight: bold">Chọn vùng quận, huyện mà bạn hoạt động</p>
                             <input style="width: 400px; text-align: center;" class="form-control" aria-describedby="basic-addon1" id="autocomplete" title="type &quot;a&quot;" placeholder="Nhập quận, huyện của bạn...">

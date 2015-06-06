@@ -79,6 +79,7 @@ class Home extends CI_Controller {
             )
             );
         if($this->form_validation->run() == TRUE){
+
             if(isset($_POST['dis_id']) && isset($_POST['ser_id']) && isset($_POST['txtFirstName']) && isset($_POST['txtLastName'])
                 && isset($_POST['txtPhone']) && isset($_POST['txtEmail']) && isset($_POST['txtBirthday']) && isset($_POST['txtPassword']))
             {
@@ -93,10 +94,12 @@ class Home extends CI_Controller {
                 $create_date = date('y-m-d');
                 $this->load->model('driver_model');
                 $sql = $this->driver_model->insertDriver($password, $firstname, $lastname, $birthday, $phone, $email, $create_date, '1', $dis_id, $ser_id);
-                $data = array('sql' => $sql);
-                //$data = array('dis_id');
-                echo "<script>alert('Are you sure correct all of them?');</script>";
-                header("location:".base_url()."index.php/Home/step4");
+                if($sql=='error') {
+                    echo "<script>alert('Sorry! Process is error! Please reload page!');</script>";
+                }
+                else {
+                    header("location:" . base_url() . "index.php/Home/step4");
+                }
             }else {
                 if (!isset($_POST['dis_id']) || !isset($_POST['ser_id']) || !isset($_POST['txtFirstName']) || !isset($_POST['txtLastName'])
                     || !isset($_POST['txtPhone']) || !isset($_POST['txtEmail']) || !isset($_POST['txtBirthday']) || !isset($_POST['txtPassword']))
@@ -132,8 +135,10 @@ class Home extends CI_Controller {
     }
 
     public function step4(){
-        if(isset($_SESSION['register']))
+        if(isset($_SESSION['register'])) {
+            echo "<script>alert('You are sure correctly all of them!');</script>";
             $this->load->view('home/welcome');
+        }
         else
             header("location:".base_url()."index.php/Home/step1");
         if(isset($_SESSION['register'])) {
