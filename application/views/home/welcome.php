@@ -1,5 +1,4 @@
 
-
 <?php require_once("headPage.php"); ?>
 <body>
 <div class="Page">
@@ -10,6 +9,5 @@
         </div>
     </div>
     <?php require_once("footer.php"); ?>
-    <?php echo ($sql); ?>
 </div>
 </body>

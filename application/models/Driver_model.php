@@ -32,8 +32,8 @@ class Driver_model extends CI_Model {
 			ENABLE,ID_DISTRICT,ID_SERVICE) values('$password',
 			'$firstname','$lastname','$birthday','$phone','$email',
 			'$createdate','$enable','$id_district','$id_service')";
-            $query = $this->db->query($sql);
-//            return $sql;
+             $this->db->query($sql);
+            //return $sql;
         }
         catch(Exception $e){
 

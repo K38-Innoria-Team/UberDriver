@@ -66,11 +66,50 @@ class Home extends CI_Controller {
             'is_unique' => 'Email existed',
             )
         );
-        $this->form_validation->set_rules('txtPhone', 'Phone', 'required');
+        $this->form_validation->set_rules('txtPhone', 'Phone', 'required|trim|is_unique[driver.PHONE]',
+            array(
+                'is_unique'=>'Phone existed',
+            )
+            );
         $this->form_validation->set_rules('txtBirthday', 'Birthday', 'required');
-        $this->form_validation->set_rules('txtPassword', 'Password', 'required');
-        if($this->form_validation->run() == TRUE)
-            $this->load->view("home/welcome");
+        $this->form_validation->set_rules('txtPassword', 'Password', 'required|min_length[5]|max_length[20]',
+            array(
+                'min_length'=>'Password have length from 5 to 20 characters',
+                'max_length'=> 'Password have length from 5 to 20 characters',
+            )
+            );
+        if($this->form_validation->run() == TRUE){
+            if(isset($_POST['dis_id']) && isset($_POST['ser_id']) && isset($_POST['txtFirstName']) && isset($_POST['txtLastName'])
+                && isset($_POST['txtPhone']) && isset($_POST['txtEmail']) && isset($_POST['txtBirthday']) && isset($_POST['txtPassword']))
+            {
+                $dis_id = $this->input->post('dis_id');
+                $ser_id = $this->input->post('ser_id');
+                $firstname = $this->input->post('txtFirstName');
+                $lastname = $this->input->post('txtLastName');
+                $phone = $this->input->post('txtPhone');
+                $email = $this->input->post('txtEmail');
+                $birthday = $this->input->post('txtBirthday');
+                $password = $this->input->post('txtPassword');
+                $create_date = date('y-m-d');
+                $this->load->model('driver_model');
+                $sql = $this->driver_model->insertDriver($password, $firstname, $lastname, $birthday, $phone, $email, $create_date, '1', $dis_id, $ser_id);
+                $data = array('sql' => $sql);
+                //$data = array('dis_id');
+                echo "<script>alert('Are you sure correct all of them?');</script>";
+                header("location:".base_url()."index.php/Home/step4");
+            }else {
+                if (!isset($_POST['dis_id']) || !isset($_POST['ser_id']) || !isset($_POST['txtFirstName']) || !isset($_POST['txtLastName'])
+                    || !isset($_POST['txtPhone']) || !isset($_POST['txtEmail']) || !isset($_POST['txtBirthday']) || !isset($_POST['txtPassword']))
+                {
+                    echo "<script>alert('Error! Please,Check information again or reload this page!');</script>";
+                    header("location:".base_url()."index.php/Home/step3");
+                }
+                else{
+                    header("location:".base_url()."index.php/Home");
+                }
+
+            }
+        }
 
         if(isset($_POST['ser_id']) && isset($_POST['dis_id'])) {
             $dis_id = $this->input->post('dis_id');
@@ -93,20 +132,15 @@ class Home extends CI_Controller {
     }
 
     public function step4(){
-        $dis_id = $this->input->post('dis_id');
-        $ser_id = $this->input->post('ser_id');
-        $firstname = $this->input->post('txtFirstName');
-        $lastname = $this->input->post('txtLastName');
-        $phone = $this->input->post('txtPhone');
-        $email = $this->input->post('txtEmail');
-        $birthday = $this->input->post('txtBirthday');
-        $password = $this->input->post('txtPassword');
-        $create_date = date('y-m-d');
-        $this->load->model('driver_model');
-        $sql = $this->driver_model->insertDriver($password,$firstname,$lastname,$birthday,$phone,$email,$create_date,'1',$dis_id,$ser_id);
-        $data = array('sql' => $sql);
-        //$data = array('dis_id');
-        $this->load->view('home/welcome', $data);
+        if(isset($_SESSION['register']))
+            $this->load->view('home/welcome');
+        else
+            header("location:".base_url()."index.php/Home/step1");
+        if(isset($_SESSION['register'])) {
+            unset($_SESSION['register']);
+        }
+
+
     }
 
     public function register1()
