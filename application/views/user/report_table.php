@@ -1,11 +1,11 @@
 <?php
-	if(isset($_POST["btnReport"])){
-		echo "<h2>Danh sách tài xế vùng ".$_POST["txtRegion"]."</h2>";
+	/*if(isset($_POST["btnReport"])){
+		echo "<h2 style='color:white'>Danh sách tài xế vùng ".$_POST["txtRegion"]."</h2>";*/
 		//$dri = $driver;
 		//print_r($driver);
 		
 ?>
-	<table class="table table-hover">
+	<table class="table table-hover" style="background-color: white">
 	  <thead>
 	  	<th>STT</th>
 	  	<th>Họ và tên</th>
@@ -16,6 +16,7 @@
 	  	<th>Trạng thái</th>
 	  </thead>
 	  <tbody>
+      
 	  <?php
 	  	for($i=0;$i<count($driver);$i++){
 	  		?>
@@ -34,5 +35,5 @@
 	  </tbody>
 	</table>
 <?php
-	}
+	/*}*/
 ?>
