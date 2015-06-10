@@ -20,7 +20,11 @@ for($i=0;$i<count($arr);$i++){
 ?>
 <div class="Page">
     <img style="position: relative; top: 10px; left: 10px" src="<?php echo base_url(); ?>assets/img/uber_slogo.png" width="3%"/>
+<<<<<<< HEAD
     <a style="position: relative; top: 10px; left: 10px" href="<?php echo base_url(); ?>index.php/login" class="btn btn-danger">Log out</a>
+=======
+    <a style="position: relative; top: 10px; left: 10px" href="#" class="btn btn-danger">Log out</a>
+>>>>>>> origin/master
     <a style="position: relative; top: 10px; left: 10px" href="<?php echo base_url(); ?>index.php/Home" class="btn btn-success">Return index</a>
 
     <div class="Header">

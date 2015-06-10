@@ -16,7 +16,33 @@
 	  	<th>Trạng thái</th>
 	  </thead>
 	  <tbody>
+<<<<<<< HEAD
       
+=======
+      <tr>
+          <td>
+              1
+          </td>
+          <td>
+              Du Tuan Nguyen
+          </td>
+          <td>
+              0123456789
+          </td>
+          <td>
+              nguyen@mail.com
+          </td>
+          <td>
+              Uber X
+          </td>
+          <td>
+              Ho CHi Minh
+          </td>
+          <td>
+              Hoat dong
+          </td>
+      </tr>
+>>>>>>> origin/master
 	  <?php
 	  	for($i=0;$i<count($driver);$i++){
 	  		?>
